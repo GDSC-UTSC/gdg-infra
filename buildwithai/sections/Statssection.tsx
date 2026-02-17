@@ -1,16 +1,16 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Users, Briefcase, Building2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Users, FileText, Lightbulb, Users2, Presentation, Trophy } from 'lucide-react';
+import Image from 'next/image';
 
 /**
- * Stats Section Component
+ * About BWAI Section Component
  *
- * Displays event statistics with animated counters
+ * Displays information about Build With AI event
  */
 export function StatsSection() {
-    // TODO: Update these with real-time data from Firestore if desired
-    const stats = [
+    const lastYearStats = [
         {
             icon: Users,
             label: 'Participants',
@@ -19,28 +19,118 @@ export function StatsSection() {
             color: 'text-purple-400',
         },
         {
-            icon: Briefcase,
-            label: 'Applications',
-            value: 900,
+            icon: FileText,
+            label: 'Registrations',
+            value: 800,
             suffix: '+',
             color: 'text-blue-400',
         },
+    ];
+
+    const expectations = [
         {
-            icon: Building2,
-            label: 'Companies',
-            value: 30,
-            suffix: '+',
-            color: 'text-pink-400',
+            icon: Presentation,
+            title: 'Compelling keynote speeches',
+            description: 'From experts in the industry',
+        },
+        {
+            icon: Lightbulb,
+            title: 'Hands-on workshops',
+            description: 'About evolving technologies like AI',
+        },
+        {
+            icon: Users2,
+            title: 'Networking & panel discussion',
+            description: 'Connect with professionals and peers',
+        },
+        {
+            icon: Trophy,
+            title: 'Case Competition',
+            description: 'For best AI hack of the problem',
         },
     ];
 
     return (
-        <section className="relative py-20 bg-gradient-to-b from-transparent via-[#0a0a1f]/30 to-transparent">
+        <section className="relative py-20">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    {stats.map((stat, index) => (
-                        <StatCard key={index} {...stat} index={index} />
-                    ))}
+                {/* Title */}
+                <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+                    About BWAI
+                </h2>
+
+                {/* Description */}
+                <p className="text-xl text-center text-gray-300 max-w-4xl mx-auto mb-16">
+                    Build With AI is the Biggest AI Conference + Competition at the University of Toronto! Which brings together passionate and curious minds to explore the future of Artificial Intelligence
+                </p>
+
+                {/* Last Year Stats */}
+                <div className="mb-16">
+                    <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 text-white">
+                        Last Year We Had
+                    </h3>
+                    <div className="grid grid-cols-2 gap-6 max-w-3xl mx-auto">
+                        {lastYearStats.map((stat, index) => (
+                            <StatCard key={index} {...stat} index={index} />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Photos Section - Placeholder */}
+                <div className="mb-16">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                        {/* Photo placeholders - replace /placeholder.jpg with your actual image paths */}
+                        <div className="relative h-64 rounded-lg overflow-hidden bg-white/5 border border-white/10">
+                            <div className="flex items-center justify-center h-full text-gray-500">
+                                <div className="text-center">
+                                    <Users className="w-16 h-16 mx-auto mb-2 opacity-50" />
+                                    <p>Team Photo</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="relative h-64 rounded-lg overflow-hidden bg-white/5 border border-white/10">
+                            <div className="flex items-center justify-center h-full text-gray-500">
+                                <div className="text-center">
+                                    <Users2 className="w-16 h-16 mx-auto mb-2 opacity-50" />
+                                    <p>Networking Photo</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="relative h-64 rounded-lg overflow-hidden bg-white/5 border border-white/10">
+                            <div className="flex items-center justify-center h-full text-gray-500">
+                                <div className="text-center">
+                                    <Presentation className="w-16 h-16 mx-auto mb-2 opacity-50" />
+                                    <p>Event Photo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* What to Expect This Year */}
+                <div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-center mb-12 text-white">
+                        What to Expect This Year
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                        {expectations.map((item, index) => (
+                            <div
+                                key={index}
+                                className="relative bg-white/5 border border-white/10 rounded-lg p-6 hover:border-purple-500/30 transition-all duration-300 hover:scale-105"
+                            >
+                                <div className="flex items-start gap-4">
+                                    <item.icon className="w-8 h-8 text-purple-400 flex-shrink-0 mt-1" />
+                                    <div>
+                                        <h4 className="text-white font-semibold text-lg mb-2">
+                                            {item.title}
+                                        </h4>
+                                        <p className="text-gray-400">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
@@ -59,6 +149,23 @@ interface StatCardProps {
 function StatCard({ icon: Icon, label, value, suffix, color, index }: StatCardProps) {
     const [count, setCount] = useState(0);
     const [hasAnimated, setHasAnimated] = useState(false);
+
+    const animateCount = () => {
+        const duration = 2000; // 2 seconds
+        const steps = 60;
+        const increment = value / steps;
+        let current = 0;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= value) {
+                setCount(value);
+                clearInterval(timer);
+            } else {
+                setCount(Math.floor(current));
+            }
+        }, duration / steps);
+    };
 
     useEffect(() => {
         // Simple intersection observer to trigger animation when in view
@@ -80,42 +187,17 @@ function StatCard({ icon: Icon, label, value, suffix, color, index }: StatCardPr
         return () => observer.disconnect();
     }, [hasAnimated, index]);
 
-    const animateCount = () => {
-        const duration = 2000; // 2 seconds
-        const steps = 60;
-        const increment = value / steps;
-        let current = 0;
-
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= value) {
-                setCount(value);
-                clearInterval(timer);
-            } else {
-                setCount(Math.floor(current));
-            }
-        }, duration / steps);
-    };
-
     return (
         <div
             id={`stat-${index}`}
-            className="relative group"
+            className="relative bg-white/5 border border-white/10 rounded-lg p-6 text-center hover:border-white/20 transition-all duration-300 hover:scale-105"
         >
-            <div className="relative bg-card border border-border rounded-lg p-8 text-center hover:border-primary/50 transition-all duration-300 hover:scale-105">
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                {/* Content */}
-                <div className="relative z-10">
-                    <Icon className={`w-12 h-12 mx-auto mb-4 ${color}`} />
-                    <div className="text-5xl font-bold mb-2">
-                        <span className={color}>{count}</span>
-                        <span className={`${color} text-3xl`}>{suffix}</span>
-                    </div>
-                    <div className="text-muted-foreground text-lg">{label}</div>
-                </div>
+            <Icon className={`w-12 h-12 mx-auto mb-4 ${color}`} />
+            <div className="text-4xl md:text-5xl font-bold mb-2">
+                <span className={color}>{count}</span>
+                <span className={`${color} text-3xl`}>{suffix}</span>
             </div>
+            <div className="text-gray-400 text-lg">{label}</div>
         </div>
     );
 }

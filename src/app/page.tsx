@@ -10,7 +10,6 @@ import { Suspense } from "react";
 export default function Home() {
   return (
     <div className="min-h-screen gradient-bg">
-        <CarouselDemo />
       <HeroSection />
       {/* <StatisticsSection /> */}
       <AboutSection />
