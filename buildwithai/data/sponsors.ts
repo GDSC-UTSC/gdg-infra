@@ -67,12 +67,6 @@ export const sponsors = [
     backgroundColor: "#ffffff"  // White
   },
   {
-    name: "Apple",
-    logo: "apple.png",
-    url: "https://www.apple.com/ca/",
-    backgroundColor: "#ffffff"  // White
-  },
-  {
     name: "IBM",
     logo: "ibm.png",
     url: "https://www.ibm.com/ca-en",

@@ -165,7 +165,7 @@ function StatCard({ icon: Icon, label, value, suffix, color, index }: StatCardPr
     const [hasAnimated, setHasAnimated] = useState(false);
 
     const animateCount = () => {
-        const duration = 2000; // 2 seconds
+        const duration = 1200; // 1.2 seconds
         const steps = 60;
         const increment = value / steps;
         let current = 0;
