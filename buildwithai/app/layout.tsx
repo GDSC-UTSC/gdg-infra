@@ -25,6 +25,9 @@ export const metadata: Metadata = {
       "A space‑themed developer conference with keynotes, workshops, and a build competition.",
     images: ["/globe.svg"],
   },
+  icons: {
+    icon: "/gdg-logo.png",
+  },
 };
 
 export default function RootLayout({
