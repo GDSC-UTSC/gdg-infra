@@ -1,88 +1,174 @@
-"use client";
+'use client';
+import { useEffect, useRef } from 'react';
 
-import { Card, CardContent } from "@/components/ui/card";
-import { FadeInOnScroll, StaggerContainer } from "@/components/animations";
-import { motion } from "framer-motion";
-import { Circle, Github, Menu } from "lucide-react";
+export default function WhoWeAre() {
+  const cardRef = useRef<HTMLDivElement>(null);
 
-const AboutSection = () => {
-  const features = [
-    {
-      icon: <Github className="h-8 w-8 text-google-blue" />,
-      title: "Learn by Building",
-      description:
-        "Hands-on workshops, hackathons, and coding sessions that push your technical boundaries.",
-    },
-    {
-      icon: <Circle className="h-8 w-8 text-google-green" />,
-      title: "Industry Connections",
-      description:
-        "Network with Google engineers, industry professionals, and like-minded developers.",
-    },
-    {
-      icon: <Menu className="h-8 w-8 text-google-yellow" />,
-      title: "Career Growth",
-      description:
-        "Access to exclusive opportunities, mentorship programs, and career development resources.",
-    },
-  ];
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mx', `${x}%`);
+      card.style.setProperty('--my', `${y}%`);
+    };
+    card.addEventListener('mousemove', handleMouseMove);
+    return () => card.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <section id="about" className="py-20 bg-black">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Who We Are</h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-            GDG @ UTSC is more than just a tech club. We&apos;re a community of
-            passionate developers, designers, and innovators who believe in the
-            power of technology to change the world. Backed by Google&apos;s
-            resources and expertise, we provide a platform for students to
-            learn, grow, and make their mark in the tech industry.
-          </p>
-        </motion.div>
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap');
+      `}</style>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {features.map((feature, index) => (
-            <FadeInOnScroll key={index} delay={index * 0.1}>
-              <Card className="bg-card/50 backdrop-blur-xs hover:bg-card/80 transition-all duration-300">
-                <CardContent className="p-8 text-center">
-                  <div className="flex flex-col items-center">
-                    <div className="mb-4 flex justify-center">{feature.icon}</div>
-                    <h3 className="text-xl font-semibold mb-3 text-white">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-300">{feature.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </FadeInOnScroll>
-          ))}
-        </StaggerContainer>
+      <section style={{
+        minHeight: '100vh',
+        background: '#1c1c1e',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '4rem 2rem',
+        overflow: 'hidden',
+        position: 'relative',
+      }}>
 
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-black rounded-2xl p-8 md:p-12 text-center"
-        >
-          <h3 className="text-3xl font-bold mb-4 text-white">Our Mission</h3>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            To foster a vibrant community of developers at UTSC, providing
-            access to cutting-edge technologies, industry insights, and
-            collaborative learning experiences that prepare students for
-            successful careers in technology.
-          </p>
-        </motion.div>
-      </div>
-    </section>
+        {}
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
+          {}
+          <div style={{
+            position: 'absolute', width: 380, height: 380, borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(80,40,190,0.28) 0%, transparent 70%)',
+            top: '15%', left: '8%', filter: 'blur(55px)',
+          }} />
+          {}
+          <div style={{
+            position: 'absolute', width: 340, height: 340, borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(15,100,60,0.22) 0%, transparent 70%)',
+            top: '42%', left: '14%', filter: 'blur(55px)',
+          }} />
+          {}
+          <div style={{
+            position: 'absolute', width: 300, height: 300, borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(190,100,10,0.22) 0%, transparent 70%)',
+            bottom: '15%', left: '10%', filter: 'blur(50px)',
+          }} />
+          {}
+          <div style={{
+            position: 'absolute', width: 460, height: 120, borderRadius: '50%',
+            background: 'linear-gradient(90deg, rgba(220,50,50,0.1), rgba(220,160,0,0.1), rgba(0,180,80,0.09), rgba(0,100,220,0.08), rgba(140,0,220,0.09))',
+            bottom: '20%', left: '6%', filter: 'blur(28px)',
+          }} />
+        </div>
+
+        {}
+        <div style={{
+          position: 'absolute', top: 0, left: 0, width: 180, height: '100%', pointerEvents: 'none',
+          background: 'linear-gradient(to right, rgba(255,255,255,0.04) 0%, transparent 100%)',
+          zIndex: 2,
+        }} />
+        {}
+        <div style={{
+          position: 'absolute', top: 0, right: 0, width: 180, height: '100%', pointerEvents: 'none',
+          background: 'linear-gradient(to left, rgba(255,255,255,0.04) 0%, transparent 100%)',
+          zIndex: 2,
+        }} />
+
+        {}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '5rem',
+          maxWidth: 960,
+          width: '100%',
+          margin: '0 auto',
+          position: 'relative',
+          zIndex: 3,
+        }}>
+
+          {}
+          <div style={{ flexShrink: 0, position: 'relative' }}>
+            {}
+            <div style={{
+              position: 'absolute', inset: -4, borderRadius: 30,
+              background: 'linear-gradient(135deg, rgba(100,60,220,0.45), rgba(30,140,80,0.25), rgba(200,110,20,0.35))',
+              filter: 'blur(12px)',
+              zIndex: 0,
+            }} />
+            {}
+            <div style={{
+              position: 'relative', zIndex: 1,
+              padding: 2,
+              borderRadius: 28,
+              background: 'linear-gradient(135deg, rgba(130,90,240,0.55), rgba(40,160,90,0.3), rgba(220,120,30,0.4))',
+            }}>
+              <div
+                ref={cardRef}
+                style={{
+                  width: 320,
+                  height: 340,
+                  borderRadius: 26,
+                  background: '#bdbdbd',
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+              >
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  background: 'radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.14) 0%, transparent 60%)',
+                  pointerEvents: 'none',
+                }} />
+              </div>
+            </div>
+          </div>
+
+          {}
+          <div style={{ flex: 1, maxWidth: 420 }}>
+            <h2 style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)',
+              fontWeight: 500,
+              margin: '0 0 1.25rem 0',
+              lineHeight: 1.1,
+              letterSpacing: '-0.01em',
+              textAlign: 'center',
+              color: 'transparent',
+              background: 'linear-gradient(180deg, #7a7a8a 0%, #b0b0c0 35%, #6a6a78 70%, #404048 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 500,
+                color: 'transparent',
+                background: 'linear-gradient(180deg, #606070 0%, #9090a0 50%, #505058 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}>W</span>ho we are...
+            </h2>
+
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '0.95rem',
+              fontWeight: 300,
+              lineHeight: 1.85,
+              color: '#525260',
+              margin: 0,
+              textAlign: 'center',
+            }}>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+              faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+              pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
+              tempor.
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
   );
-};
-
-export default AboutSection;
+}
