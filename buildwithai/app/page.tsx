@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import FAQ from "@buildwithai/sections/FAQ";
 import { HeroSection } from "@buildwithai//sections/Herosection";
 import { StatsSection } from "@buildwithai//sections/Statssection";
-import SponsorCarousel from "@buildwithai/sections/SponsorCarousel";
+import SponsorsGrid from "@buildwithai/sections/SponsorsGrid";
 import WhyNow from "@buildwithai/sections/WhyNow";
 import FinalCTA from "@buildwithai/sections/FinalCTA";
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
         {/* Content sections with space theme background */}
         <div className="relative bg-gradient-to-b from-black via-[#0a0a1f] to-black">
           <StatsSection />
-          <SponsorCarousel />
+          <SponsorsGrid />
           <WhyNow />
           <FAQ />
           <FinalCTA />
