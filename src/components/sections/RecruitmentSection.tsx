@@ -51,7 +51,7 @@ const RecruitmentSection = () => {
   ];
 
   return (
-    <section id="recruitment" className="py-20 bg-secondary/50">
+    <section id="recruitment" className="py-20 bg-accent/50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -60,7 +60,7 @@ const RecruitmentSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Join Our Team</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Join Our Team</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Ready to make an impact? We&apos;re looking for passionate students
             who want to contribute to UTSC&apos;s tech community and grow their

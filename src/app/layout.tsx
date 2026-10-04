@@ -38,9 +38,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-black">
+    <html lang="en" className="bg-background">
       <Analytics />
-      <body className={`${inter.className} bg-black`}>
+      <body className={`${inter.className} bg-background`}>
         <ServiceWorker>
           <AuthProvider>
             <HeaderServer />

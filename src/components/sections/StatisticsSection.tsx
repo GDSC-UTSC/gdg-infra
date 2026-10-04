@@ -34,11 +34,11 @@ function StatItem({ number, description }: StatItemProps) {
 
     return (
         <div className="text-center p-6" ref={ref}>
-            <div className="text-5xl md:text-6xl font-black tracking-tight text-white mb-3">
+            <div className="text-5xl md:text-6xl font-black tracking-tight text-primary mb-3">
                 {count}
                 {/\+$/.test(number) && "+"}
             </div>
-            <p className="text-gray-300 text-base md:text-lg font-medium leading-relaxed">{description}</p>
+            <p className="text-muted-foreground text-base md:text-lg font-medium leading-relaxed">{description}</p>
         </div>
     );
 }
@@ -48,7 +48,7 @@ export default function StatisticsSection() {
         <section className="py-20 relative">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl md:text-6xl font-black tracking-tight text-white mb-12">
+                    <h2 className="text-5xl md:text-6xl font-black tracking-tight text-foreground mb-12">
                         Our Impact
                     </h2>
                 </div>
