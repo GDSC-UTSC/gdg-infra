@@ -137,37 +137,50 @@
   }
 }
 
-/* Modern dark theme with stealth startup aesthetics */
+/* Google Material Design light theme */
 
 @layer base {
   :root {
-    --background: 220 23% 4%;
-    --foreground: 210 40% 98%;
+    /* Light blue background - more noticeable blue tint */
+    --background: 207 89% 93%;
+    /* #202124 - Google dark gray */
+    --foreground: 240 6% 13%;
 
-    --card: 220 20% 8%;
-    --card-foreground: 210 40% 98%;
+    /* #FFFFFF - White cards */
+    --card: 0 0% 100%;
+    --card-foreground: 240 6% 13%;
 
-    --popover: 220 20% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 6% 13%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
+    /* #4285F4 - Google Blue */
+    --primary: 217 89% 61%;
+    /* White text on blue */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 12%;
-    --secondary-foreground: 210 40% 98%;
+    /* #F1F3F4 - Google light gray */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 240 6% 13%;
 
-    --muted: 220 15% 12%;
-    --muted-foreground: 215 20% 65%;
+    /* #F1F3F4 - Light gray */
+    --muted: 220 14% 96%;
+    /* #5F6368 - Google secondary gray */
+    --muted-foreground: 220 9% 39%;
 
-    --accent: 220 15% 16%;
-    --accent-foreground: 210 40% 98%;
+    /* Light blue accent tint */
+    --accent: 207 89% 93%;
+    /* Google Blue */
+    --accent-foreground: 217 89% 61%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    /* #EA4335 - Google Red */
+    --destructive: 4 90% 58%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 18%;
-    --input: 220 13% 18%;
-    --ring: 217 91% 60%;
+    /* #DADCE0 - Google border gray */
+    --border: 220 13% 87%;
+    --input: 220 13% 87%;
+    /* Google Blue for focus rings */
+    --ring: 217 89% 61%;
 
     --radius: 0.75rem;
   }
@@ -177,17 +190,44 @@
   body {
     @apply text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background: linear-gradient(135deg, hsl(220, 23%, 4%) 0%, hsl(220, 20%, 8%) 100%);
+    background: linear-gradient(135deg, #D6EAFF 0%, #E3F2FD 100%);
   }
 }
 
-/* Custom gradient backgrounds */
+/* Custom gradient backgrounds - Google Light Theme */
 .gradient-bg {
-  background: linear-gradient(135deg, hsl(220, 23%, 4%) 0%, hsl(220, 20%, 8%) 100%);
+  background: linear-gradient(135deg, #D6EAFF 0%, #E3F2FD 100%);
+}
+
+.gradient-google-light {
+  background: linear-gradient(135deg, #D6EAFF 0%, #E3F2FD 100%);
 }
 
 .hero-gradient {
-  background: radial-gradient(ellipse at top, hsl(217, 91%, 12%) 0%, transparent 50%);
+  background: radial-gradient(ellipse at top, rgba(66, 133, 244, 0.08) 0%, transparent 50%);
+}
+
+.hero-gradient-light {
+  background: radial-gradient(ellipse at top, rgba(66, 133, 244, 0.08) 0%, transparent 50%);
+}
+
+/* Multi-color Google accent utilities */
+.border-google-multi {
+  border-width: 4px 0 0 0;
+  border-style: solid;
+  border-image: linear-gradient(90deg, #4285F4 0%, #34A853 33%, #FBBC04 66%, #EA4335 100%) 1;
+}
+
+.text-google-gradient {
+  background: linear-gradient(90deg, #4285F4 0%, #34A853 33%, #FBBC04 66%, #EA4335 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Google multi-color fill for SVGs */
+.fill-google-gradient {
+  fill: url(#google-gradient);
 }
 
 /* Smooth scrolling */
@@ -208,4 +248,21 @@ html {
 
 .float-animation {
   animation: float 6s ease-in-out infinite;
+}
+
+/* Individual Google color border utilities */
+.border-t-google-blue {
+  border-top: 4px solid #4285F4;
+}
+
+.border-t-google-green {
+  border-top: 4px solid #34A853;
+}
+
+.border-t-google-yellow {
+  border-top: 4px solid #FBBC04;
+}
+
+.border-t-google-red {
+  border-top: 4px solid #EA4335;
 }

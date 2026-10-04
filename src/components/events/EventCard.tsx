@@ -64,11 +64,24 @@ const EventCard = ({ event }: EventCardProps) => {
     return "past";
   };
 
+  const getStatusBadgeClass = (status: string): string => {
+    switch (status) {
+      case "upcoming":
+        return "bg-[#4285F4]/10 text-[#4285F4]";
+      case "ongoing":
+        return "bg-[#34A853]/10 text-[#34A853]";
+      case "past":
+        return "bg-muted text-muted-foreground";
+      default:
+        return "bg-primary/10 text-primary";
+    }
+  };
+
   return (
     <ScaleIn hover className="w-full">
       <Link href={`/events/${event.id}`}>
-        <div className="bg-card/20 backdrop-blur-sm border-border hover:bg-card/80 transition-all duration-300 w-full h-full">
-          <Card className="h-[420px] flex flex-col">
+        <div className="bg-white hover:shadow-lg border border-border transition-all duration-300 w-full h-full rounded-lg">
+          <Card className="h-[420px] flex flex-col border-0">
           {/* Event Image */}
           <div className="relative w-full h-48 overflow-hidden rounded-t-lg flex-shrink-0">
             {firstImage ? (
@@ -86,7 +99,7 @@ const EventCard = ({ event }: EventCardProps) => {
 
             {/* Status Badge */}
             <div className="absolute top-3 right-3">
-              <span className="px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
+              <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusBadgeClass(getDisplayStatus(event))}`}>
                 {getDisplayStatus(event).charAt(0).toUpperCase() + getDisplayStatus(event).slice(1)}
               </span>
             </div>
@@ -129,7 +142,7 @@ const EventCard = ({ event }: EventCardProps) => {
                   {event.tags.slice(0, 3).map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary whitespace-nowrap"
+                      className="text-xs px-2 py-1 rounded-full bg-[#FBBC04]/10 text-[#202124] whitespace-nowrap"
                     >
                       {tag}
                     </span>
